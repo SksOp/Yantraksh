@@ -4,7 +4,7 @@ export const themeSettings = () => {
       fontFamily: ["Comic Neue", "cursive"].join(","),
       fontSize: 12,
       h1: {
-        fontFamily: ["Comic Neue", "cursive"].join(","),
+        fontFamily: ["Mechanismo"].join(","),
         fontSize: 40,
       },
       h2: {
