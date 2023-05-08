@@ -30,6 +30,6 @@ body::-webkit-scrollbar {
 body {
   scrollbar-width: none;
   background-color: #040015 !important;
-  overflow: hidden;
+  /* overflow: hidden; */
   /* disabling  */
 }

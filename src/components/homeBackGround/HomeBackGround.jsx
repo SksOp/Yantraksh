@@ -1,41 +1,36 @@
 import React from "react";
 import "./HomeBackGround.css";
-import { Box, Typography, alpha } from "@mui/material";
+import { Box, Typography, alpha, useMediaQuery } from "@mui/material";
 import FlexCenteredColumn from "../../muiStyled/FlexCenteredColumn";
 import FlexLeftRow from "../../muiStyled/FlexLeftRow";
 import VideoBG from "./utils/VideoBG";
+import { useState, useEffect, useRef } from "react";
+import { HorizontalLine } from "../navbar/Navbar";
+import FlexLeftColumn from "../../muiStyled/FlexLeftColumn";
+import FlexCenteredRow from "../../muiStyled/FlexCenteredRow";
 const HomeBackGround = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const parentRef = useRef(null);
+  function handleMouseMove(e) {
+    const { clientX, clientY } = e;
+    if (parentRef.current) {
+      const { top, left } = parentRef.current.getBoundingClientRect();
+      setMousePosition({ x: clientX - left, y: clientY - top });
+    }
+  }
+  const isDesktop = useMediaQuery("(min-width:600px)");
   return (
     <>
       <FlexCenteredColumn height={"100vh"} width={"100%"} zIndex={1}>
         <FlexCenteredColumn
           height={"50%"}
           sx={{
-            justifyContent: "flex-end",
+            justifyContent: isDesktop ? "center" : "center",
           }}
           gap={"1rem"}
           padding={"1rem"}
         >
-          <Typography
-            variant="h1"
-            fontSize={{ xs: "3rem", sm: "5rem", md: "7rem", lg: "7rem" }}
-            sx={{ color: "#FFFFFF", position: "relative" }}
-            zIndex={2}
-          >
-            <span>YANTRAKSH</span>
-            <span
-              style={{
-                position: "absolute",
-                left: "0.25rem",
-                top: "0.25rem",
-                WebkitTextStroke: "1px #FFFFFF",
-                WebkitTextFillColor: "transparent",
-                WebkitTextStrokeWidth: "1px",
-              }}
-            >
-              YANTRAKSH
-            </span>
-          </Typography>
+          <TextHeading />
           <Box
             zIndex={2}
             padding={"0.5rem 1.2rem"}
@@ -67,22 +62,16 @@ const HomeBackGround = () => {
           width={"100%"}
           zIndex={2}
         >
-          <FlexLeftRow
-            zIndex={2}
-            width={"95%"}
-            height={"95%"}
-            border={"1px solid red"}
-            margin={"0 auto"}
-            maxWidth={"800px"}
-            sx={{
-              borderRadius: "20px",
-              border: "1.5px solid #6E26F4",
-              backdropFilter: "blur(15px)",
-            }}
-            position={"relative"}
+          <FlexCenteredRow
+            ref={parentRef}
+            onMouseMove={handleMouseMove}
+            className="mouse-tracker"
+            flexDirection={isDesktop ? "row" : "column"}
           >
-            <MouseTracer />
-          </FlexLeftRow>
+            <MouseTracer mousePosition={mousePosition} />
+            <DetailsTabRenderer title="Yantraksh" yantraksh />
+            <DetailsTabRenderer title="Events" events />
+          </FlexCenteredRow>
         </Box>
       </FlexCenteredColumn>
 
@@ -93,9 +82,136 @@ const HomeBackGround = () => {
 
 export default HomeBackGround;
 
-const MouseTracer = () => {
+const MouseTracer = ({ mousePosition }) => {
   //making an absolute div to track mouse movement within the parent div and it will appear only when mouse is inside the parent div
-  const [isMouseInside, setMouseInside] = React.useState(false);
-  const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
-  return <></>;
+
+  return (
+    <>
+      <Box
+        className="blurred-circle"
+        zIndex={2}
+        style={{
+          left: mousePosition.x,
+          top: mousePosition.y,
+          opacity: 0.5,
+        }}
+      ></Box>
+    </>
+  );
 };
+
+const TextHeading = () => {
+  const [trigger, setTrigger] = useState(false);
+  const text = "YANTRAKSH";
+  const currentText = useAnimatedText(text, trigger);
+
+  const handleMouseEnter = () => {
+    setTrigger(true);
+  };
+  const handleMouseLeave = () => {
+    if (currentText === text) {
+      setTrigger(false);
+    }
+  };
+
+  useEffect(() => {
+    if (currentText === text) {
+      setTrigger(false);
+    }
+  }, [currentText]);
+
+  return (
+    <Typography
+      variant="h1"
+      fontSize={{ xs: "3rem", sm: "5rem", md: "7rem", lg: "7rem" }}
+      sx={{ color: "#FFFFFF", position: "relative" }}
+      zIndex={2}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <span>{currentText}</span>
+      <span
+        style={{
+          position: "absolute",
+          left: "0.25rem",
+          top: "0.25rem",
+          WebkitTextStroke: "1px #FFFFFF",
+          WebkitTextFillColor: "transparent",
+          WebkitTextStrokeWidth: "1px",
+        }}
+      >
+        {currentText}
+      </span>
+    </Typography>
+  );
+};
+
+const useAnimatedText = (text, trigger) => {
+  const [currentText, setCurrentText] = useState(text);
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*";
+  const getRandomIndex = () => Math.floor(Math.random() * characters.length);
+  useEffect(() => {
+    if (!trigger) {
+      return;
+    }
+
+    let interval;
+    let target = Array(text.length).fill(null);
+
+    const animate = () => {
+      const updated = target.map((char, index) =>
+        char === text[index] ? char : characters[getRandomIndex()]
+      );
+
+      setCurrentText(updated.join(""));
+      const done = target.every((char, index) => char === text[index]);
+
+      if (done) {
+        clearInterval(interval);
+
+        return;
+      }
+
+      target = updated;
+    };
+
+    interval = setInterval(animate, 3);
+
+    return () => clearInterval(interval);
+  }, [text, trigger, characters]);
+
+  return currentText;
+};
+
+const DetailsTabRenderer = ({ title, yantraksh, events }) => {
+  const isDesktop = useMediaQuery("(min-width:600px)");
+  return (
+    <FlexLeftColumn
+      color="white"
+      width={isDesktop ? "48%" : "95%"}
+      height={"95%"}
+      padding={"1.5rem"}
+      borderRadius={"0.5rem"}
+      border={"1.5px solid #6e26f4"}
+      sx={{
+        alignItems: "flex-start",
+        justifyContent: "flex-start",
+        ":hover": {
+          backgroundColor: alpha("#130A44", 0.4),
+        },
+      }}
+    >
+      <Typography variant="h3">{title}</Typography>
+      <HorizontalLine />
+      {yantraksh && (
+        <Typography variant="h5" sx={{ marginTop: "0.3rem" }}>
+          {detail}
+        </Typography>
+      )}
+      {events && "Coming Soon . . ."}
+    </FlexLeftColumn>
+  );
+};
+
+const detail =
+  "Yantraksh is an annual tech festival of Assam University that celebrates innovation, creativity, and technology. It is an event that brings together students, professionals, and enthusiasts from all over the India to showcase their ideas, inventions and experiments. The festival is an excellent platform for networking, learning, and exploring new technologies.";

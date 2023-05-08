@@ -1,1 +1,31 @@
+.blurred-circle {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  filter: blur(100px);
+  transform: translate(-50%, -50%);
+  transition: all;
+  opacity: 0;
+}
+.mouse-tracker {
+  z-index: 2;
+  width: 95%;
+  height: 95%;
+  margin: 0 auto;
+  max-width: 800px;
+  border-radius: 20px;
+  border: 1.5px solid #5118b9;
+  backdrop-filter: blur(15px);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  background-color: rgba(11, 0, 32, 0.699);
+}
 
+.mouse-tracker:hover {
+  background-color: rgba(0, 0, 0, 0.377);
+}

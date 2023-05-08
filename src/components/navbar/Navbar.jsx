@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <FlexLeftRow
-      position={"absolute"}
+      position={"fixed"}
       right={isDesktop ? "20px" : "0px"}
       top="20px"
       gap="1.5rem"
@@ -159,7 +159,7 @@ const HamburgerMenu = (props) => {
   );
 };
 
-const HorizontalLine = () => {
+export const HorizontalLine = () => {
   return (
     <Box
       backgroundColor={alpha("#fff", 0.2)}

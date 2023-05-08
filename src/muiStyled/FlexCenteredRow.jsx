@@ -3,7 +3,7 @@ import { styled } from "@mui/system";
 
 const FlexCenteredRow = styled(Box)({
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "space-around",
   alignItems: "center",
 });
 
