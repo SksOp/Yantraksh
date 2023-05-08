@@ -27,19 +27,19 @@ const Navbar = () => {
     >
       {isDesktop && (
         <>
-          <a href="/">
+          <a href="/Yantraksh/">
             <Typography variant="h5">Home</Typography>
           </a>
-          <a href="/events">
+          <a href="/Yantraksh/events">
             <Typography variant="h5">Events</Typography>
           </a>
-          <a href="/about">
+          <a href="/Yantraksh/about">
             <Typography variant="h5">About</Typography>
           </a>
-          <a href="/team">
+          <a href="/Yantraksh/team">
             <Typography variant="h5">Team</Typography>
           </a>
-          <a href="/sponsor">
+          <a href="/Yantraksh/sponsor">
             <Button
               variant="contained"
               sx={{
@@ -126,27 +126,27 @@ const HamburgerMenu = (props) => {
           <CloseIcon sx={{ color: "#FFFFFF" }} />
         </Button>
 
-        <a href="/">
+        <a href="/Yantraksh/">
           <Typography variant="h3">Home</Typography>
         </a>
         <HorizontalLine />
-        <a href="/events">
+        <a href="/Yantraksh/events">
           <Typography variant="h3">Events</Typography>
         </a>
         <HorizontalLine />
-        <a href="/events">
+        <a href="/Yantraksh/events">
           <Typography variant="h3">Events</Typography>
         </a>
         <HorizontalLine />
-        <a href="/about">
+        <a href="/Yantraksh/about">
           <Typography variant="h3">About</Typography>
         </a>
         <HorizontalLine />
-        <a href="/team">
+        <a href="/Yantraksh/team">
           <Typography variant="h3">Team</Typography>
         </a>
         <HorizontalLine />
-        <a href="/sponsor">
+        <a href="/Yantraksh/sponsor">
           <Button
             variant="contained"
             sx={{
