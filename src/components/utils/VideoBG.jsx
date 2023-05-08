@@ -1,4 +1,5 @@
 import React from "react";
+
 const VideoBG = ({
   videoUrl,
   videoType,
