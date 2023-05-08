@@ -27,19 +27,19 @@ const Navbar = () => {
     >
       {isDesktop && (
         <>
-          <a href="/Yantraksh/">
+          <a href="/">
             <Typography variant="h5">Home</Typography>
           </a>
-          <a href="/Yantraksh/events">
+          <a href="/events">
             <Typography variant="h5">Events</Typography>
           </a>
-          <a href="/Yantraksh/about">
+          <a href="/about">
             <Typography variant="h5">About</Typography>
           </a>
-          <a href="/Yantraksh/team">
+          <a href="/team">
             <Typography variant="h5">Team</Typography>
           </a>
-          <a href="/Yantraksh/sponsor">
+          <a href="/sponsor">
             <Button
               variant="contained"
               sx={{
@@ -107,6 +107,10 @@ const HamburgerMenu = (props) => {
         "& .MuiBackdrop-root": {
           backgroundColor: "transparent",
         },
+        "& .MuiDrawer-paper::-webkit-scrollbar": {
+          width: "0.0rem",
+          height: "0.0rem",
+        },
       }}
     >
       <FlexCenteredColumn
@@ -116,7 +120,7 @@ const HamburgerMenu = (props) => {
           marginBottom: "1rem",
           justifyContent: "flex-start",
 
-          gap: "1.5rem",
+          gap: "1rem",
         }}
       >
         <Button
@@ -126,27 +130,27 @@ const HamburgerMenu = (props) => {
           <CloseIcon sx={{ color: "#FFFFFF" }} />
         </Button>
 
-        <a href="/Yantraksh/">
+        <a href="/">
           <Typography variant="h3">Home</Typography>
         </a>
         <HorizontalLine />
-        <a href="/Yantraksh/events">
+        <a href="/events">
           <Typography variant="h3">Events</Typography>
         </a>
         <HorizontalLine />
-        <a href="/Yantraksh/events">
+        <a href="/events">
           <Typography variant="h3">Events</Typography>
         </a>
         <HorizontalLine />
-        <a href="/Yantraksh/about">
+        <a href="/about">
           <Typography variant="h3">About</Typography>
         </a>
         <HorizontalLine />
-        <a href="/Yantraksh/team">
+        <a href="/team">
           <Typography variant="h3">Team</Typography>
         </a>
         <HorizontalLine />
-        <a href="/Yantraksh/sponsor">
+        <a href="/sponsor">
           <Button
             variant="contained"
             sx={{
@@ -176,6 +180,7 @@ export const HorizontalLine = () => {
       backgroundColor={alpha("#fff", 0.2)}
       width="70%"
       height="1px"
+      minHeight="1px"
       sx={{ margin: "1rem 0" }}
     ></Box>
   );

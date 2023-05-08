@@ -4,7 +4,7 @@ import foodv from "./foodv.mp4";
 
 export const sponsorData = [
   {
-    title: "Title Sponsors",
+    title: "Title ",
     price: "₹6,00,000",
     description: [
       `Audio and video presentations of the title sponsor will be
@@ -19,7 +19,7 @@ export const sponsorData = [
     type: "mp4",
   },
   {
-    title: "ASSOCIATE SPONSOR",
+    title: "ASSOCIATE ",
     price: "₹4,00,000",
     description: [
       `Audio and video presentations of the associate sponsor will
@@ -37,7 +37,7 @@ export const sponsorData = [
     type: "mp4",
   },
   {
-    title: "FOOD SPONSORS",
+    title: "FOOD ",
     price: "₹3,00,000",
     description: [
       `Food sponsors from benefit from their involvement in
@@ -53,7 +53,7 @@ export const sponsorData = [
     type: "mp4",
   },
   {
-    title: "PLATINUM SPONSORS    ",
+    title: "PLATINUM ",
     price: "₹2,00,000",
     description: [
       `All the banners of the techfest will be including the
@@ -70,7 +70,7 @@ export const sponsorData = [
     type: "mp4",
   },
   {
-    title: "GOLD SPONSORS    ",
+    title: "GOLD ",
     price: "₹1,00,000",
     description: [
       `All the banners of the techfest will be including the
@@ -87,7 +87,7 @@ export const sponsorData = [
     type: "mp4",
   },
   {
-    title: "EVENT SPONSORS    ",
+    title: "EVENT ",
     price: "₹50,000 - ₹1,00,000",
     description: [
       `As our event sponsor, you would have premium visibility

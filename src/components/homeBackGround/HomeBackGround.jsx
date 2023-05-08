@@ -3,11 +3,13 @@ import "./HomeBackGround.css";
 import { Box, Typography, alpha, useMediaQuery } from "@mui/material";
 import FlexCenteredColumn from "../../muiStyled/FlexCenteredColumn";
 import FlexLeftRow from "../../muiStyled/FlexLeftRow";
-import VideoBG from "./utils/VideoBG";
+import VideoBG from "../utils/VideoBG";
 import { useState, useEffect, useRef } from "react";
 import { HorizontalLine } from "../navbar/Navbar";
 import FlexLeftColumn from "../../muiStyled/FlexLeftColumn";
 import FlexCenteredRow from "../../muiStyled/FlexCenteredRow";
+import nebula from "../../assets/nebula.webm";
+import nebulaPoster from "../../assets/nebulaposter.jpg";
 const HomeBackGround = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const parentRef = useRef(null);
@@ -23,12 +25,12 @@ const HomeBackGround = () => {
     <>
       <FlexCenteredColumn height={"100vh"} width={"100%"} zIndex={1}>
         <FlexCenteredColumn
-          height={"50%"}
+          height={isDesktop ? "50%" : "UNSET"}
           sx={{
             justifyContent: isDesktop ? "center" : "center",
           }}
           gap={"1rem"}
-          padding={"1rem"}
+          padding={"4rem 1rem"}
         >
           <TextHeading />
           <Box
@@ -61,12 +63,14 @@ const HomeBackGround = () => {
           height={"50%"}
           width={"100%"}
           zIndex={2}
+          padding={"0 1.7rem"}
         >
           <FlexCenteredRow
             ref={parentRef}
             onMouseMove={handleMouseMove}
             className="mouse-tracker"
             flexDirection={isDesktop ? "row" : "column"}
+            height={isDesktop ? "100%" : "unset"}
           >
             <MouseTracer mousePosition={mousePosition} />
             <DetailsTabRenderer title="Yantraksh" yantraksh />
@@ -75,7 +79,12 @@ const HomeBackGround = () => {
         </Box>
       </FlexCenteredColumn>
 
-      <VideoBG />
+      <VideoBG
+        restrictWidth={true}
+        videoUrl={nebula}
+        poster={nebulaPoster}
+        videoType={"webm"}
+      />
     </>
   );
 };
@@ -188,11 +197,12 @@ const DetailsTabRenderer = ({ title, yantraksh, events }) => {
   return (
     <FlexLeftColumn
       color="white"
-      width={isDesktop ? "48%" : "95%"}
+      width={isDesktop ? "48%" : "100%"}
       height={"95%"}
       padding={"1.5rem"}
       borderRadius={"0.5rem"}
       border={"1.5px solid #6e26f4"}
+      flex="1"
       sx={{
         alignItems: "flex-start",
         justifyContent: "flex-start",
@@ -200,6 +210,8 @@ const DetailsTabRenderer = ({ title, yantraksh, events }) => {
           backgroundColor: alpha("#130A44", 0.4),
         },
       }}
+      overflow="auto"
+      className="no-scrollbar"
     >
       <Typography variant="h3">{title}</Typography>
       <HorizontalLine />

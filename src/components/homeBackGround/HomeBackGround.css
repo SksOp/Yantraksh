@@ -14,7 +14,8 @@
 .mouse-tracker {
   z-index: 2;
   width: 95%;
-  height: 95%;
+  gap: 20px;
+  padding: 20px;
   margin: 0 auto;
   max-width: 800px;
   border-radius: 20px;

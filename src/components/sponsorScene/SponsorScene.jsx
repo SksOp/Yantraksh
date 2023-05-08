@@ -3,108 +3,49 @@ import "./SponsorScene.css";
 import { sponsorData } from "../../assets/sponsorData";
 import CardRendered from "../cardRenderer/CardRendered";
 import FlexCenteredRow from "../../muiStyled/FlexCenteredRow";
+import FlexCenteredColumn from "../../muiStyled/FlexCenteredColumn";
 import { useMediaQuery, Button } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { Box } from "@mui/material";
+import VideoBG from "../utils/VideoBG";
+import robot from "../../assets/robot.webm";
+import robotPoster from "../../assets/robotposter.jpg";
+import Selector from "./utils/Selector";
+import Renderer from "./utils/Renderer";
 const SponsorScene = () => {
-  const containerRef = useRef(null);
-  const totalSponsors = sponsorData.length;
-  const [lastActiveSponsor, setLastActiveSponsor] = React.useState(
-    totalSponsors - 1
-  );
-  const [activeSponsor, setActiveSponsor] = React.useState(0);
-  const [activeSponsor2, setActiveSponsor2] = React.useState(1);
-  const isbreakPoint = useMediaQuery("(max-width: 1145px)");
-  const handleNextSponsor = () => {
-    setLastActiveSponsor(activeSponsor);
-    setActiveSponsor(activeSponsor2);
-    setActiveSponsor2(
-      activeSponsor2 + 1 > totalSponsors - 1 ? 0 : activeSponsor2 + 1
-    );
+  const isDesktop = useMediaQuery("(min-width: 850px)");
+  const [selectedSponsor, setSelectedSponsor] = React.useState(0);
+  const [isRendererActive, setIsRendererActive] = React.useState(false);
+  const [isSelectorActive, setIsSelectorActive] = React.useState(true);
+
+  const seletorProp = {
+    isSelectorActive,
+    setIsSelectorActive,
+    isRendererActive,
+    setIsRendererActive,
+    setSelectedSponsor,
   };
-  const handlePrevSponsor = () => {
-    setActiveSponsor2(activeSponsor);
-    setActiveSponsor(lastActiveSponsor);
-    setLastActiveSponsor(
-      lastActiveSponsor - 1 < 0 ? totalSponsors - 1 : lastActiveSponsor - 1
-    );
-
-    console.log({ activeSponsor, activeSponsor2, lastActiveSponsor });
-  };
-
-  useEffect(() => {
-    const container = containerRef.current;
-
-    const handleWheel = (e) => {
-      if (isbreakPoint) return;
-      const disableScroll = e.target.classList.contains("preventOtherScroll");
-      if (disableScroll) return;
-      e.preventDefault();
-      if (e.deltaY > 0) {
-        handleNextSponsor();
-      } else {
-        handlePrevSponsor();
-      }
-    };
-
-    container.addEventListener("wheel", handleWheel);
-
-    return () => {
-      container.removeEventListener("wheel", handleWheel);
-    };
-  }, [handleNextSponsor, handlePrevSponsor]);
-
+  const rendererProp = { isRendererActive, selectedSponsor };
   return (
-    <FlexCenteredRow
-      width={"100%"}
+    <FlexCenteredColumn
       height={"100vh"}
-      sx={{
-        justifyContent: "space-around",
-      }}
-      ref={containerRef}
+      width={"100%"}
+      sx={{ justifyContent: "flex-end" }}
     >
-      {isbreakPoint && (
-        <Button
-          onClick={handlePrevSponsor}
-          sx={{
-            padding: "1rem",
-          }}
-        >
-          <ArrowBackIosIcon />
-        </Button>
-      )}
-      {!isbreakPoint && (
-        <CardRendered {...sponsorData[lastActiveSponsor]} isSponsor />
-      )}
-      <CardRendered {...sponsorData[activeSponsor]} isSponsor />
-      {!isbreakPoint && (
-        <CardRendered {...sponsorData[activeSponsor2]} isSponsor />
-      )}
-      {isbreakPoint && (
-        <Button
-          onClick={handleNextSponsor}
-          sx={{
-            padding: "1rem",
-          }}
-        >
-          {" "}
-          <ArrowForwardIosIcon />{" "}
-        </Button>
-      )}
-    </FlexCenteredRow>
-
-    // <FlexCenteredRow
-    //   width={"100%"}
-    //   height={"100vh"}
-    //   sx={{
-    //     justifyContent: "space-around",
-    //   }}
-    // >
-    //   {Array.isArray(sponsorData) &&
-    //     sponsorData.map((sponsor, index) => {
-    //       return <CardRendered key={index + "sponsor"} {...sponsor} />;
-    //     })}
-    // </FlexCenteredRow>
+      <FlexCenteredRow zIndex={3} width={"100%"} height={"60%"} mb={"3rem"}>
+        <Selector {...seletorProp} />
+        {isDesktop && <Renderer {...rendererProp} />}
+      </FlexCenteredRow>
+      <VideoBG
+        videoUrl={robot}
+        videoType={"webm"}
+        poster={robotPoster}
+        width={"110%"}
+        restrictWidth={false}
+        addNoise={true}
+      />
+    </FlexCenteredColumn>
   );
 };
 

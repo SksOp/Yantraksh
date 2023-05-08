@@ -24,7 +24,6 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "http://sksop.github.io/Yantraksh/",
   "eslintConfig": {
     "extends": [
       "react-app",
