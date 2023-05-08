@@ -27,6 +27,9 @@ const Navbar = () => {
     >
       {isDesktop && (
         <>
+          <a href="/">
+            <Typography variant="h5">Home</Typography>
+          </a>
           <a href="/events">
             <Typography variant="h5">Events</Typography>
           </a>
@@ -123,6 +126,14 @@ const HamburgerMenu = (props) => {
           <CloseIcon sx={{ color: "#FFFFFF" }} />
         </Button>
 
+        <a href="/">
+          <Typography variant="h3">Home</Typography>
+        </a>
+        <HorizontalLine />
+        <a href="/events">
+          <Typography variant="h3">Events</Typography>
+        </a>
+        <HorizontalLine />
         <a href="/events">
           <Typography variant="h3">Events</Typography>
         </a>
