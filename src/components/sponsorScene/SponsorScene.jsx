@@ -13,29 +13,55 @@ import robot from "../../assets/robot.webm";
 import robotPoster from "../../assets/robotposter.jpg";
 import Selector from "./utils/Selector";
 import Renderer from "./utils/Renderer";
+import MobDetailHub from "./utils/MobDetailHub";
+import { TextHeading } from "../homeBackGround/HomeBackGround";
 const SponsorScene = () => {
   const isDesktop = useMediaQuery("(min-width: 850px)");
   const [selectedSponsor, setSelectedSponsor] = React.useState(0);
-  const [isRendererActive, setIsRendererActive] = React.useState(false);
   const [isSelectorActive, setIsSelectorActive] = React.useState(true);
 
   const seletorProp = {
     isSelectorActive,
     setIsSelectorActive,
-    isRendererActive,
-    setIsRendererActive,
     setSelectedSponsor,
+    selectedSponsor,
   };
-  const rendererProp = { isRendererActive, selectedSponsor };
+  const rendererProp = {
+    selectedSponsor,
+    isSelectorActive,
+    setIsSelectorActive,
+  };
   return (
     <FlexCenteredColumn
       height={"100vh"}
       width={"100%"}
-      sx={{ justifyContent: "flex-end" }}
+      sx={{ justifyContent: "flex-start" }}
+      padding={"3rem 0"}
+      gap={"2rem"}
     >
-      <FlexCenteredRow zIndex={3} width={"100%"} height={"60%"} mb={"3rem"}>
-        <Selector {...seletorProp} />
-        {isDesktop && <Renderer {...rendererProp} />}
+      {" "}
+      <FlexCenteredRow height={isDesktop ? "40%" : "20%"}>
+        <TextHeading />
+      </FlexCenteredRow>
+      <FlexCenteredRow
+        zIndex={3}
+        width={"100%"}
+        height={"60%"}
+        mb={isDesktop ? "3rem" : "0"}
+        position={"relative"}
+      >
+        {isDesktop && (
+          <>
+            <Selector {...seletorProp} />
+            <Renderer {...rendererProp} />
+          </>
+        )}
+        {!isDesktop && (
+          <>
+            {isSelectorActive && <Selector {...seletorProp} />}
+            {!isSelectorActive && <MobDetailHub {...rendererProp} />}
+          </>
+        )}
       </FlexCenteredRow>
       <VideoBG
         videoUrl={robot}

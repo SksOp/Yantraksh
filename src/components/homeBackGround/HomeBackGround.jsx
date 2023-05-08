@@ -10,6 +10,8 @@ import FlexLeftColumn from "../../muiStyled/FlexLeftColumn";
 import FlexCenteredRow from "../../muiStyled/FlexCenteredRow";
 import nebula from "../../assets/nebula.webm";
 import nebulaPoster from "../../assets/nebulaposter.jpg";
+import halfCircle from "../../assets/halfCircle.svg";
+import HomepageLowerContent from "./utils/HomepageLowerContent";
 const HomeBackGround = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const parentRef = useRef(null);
@@ -58,7 +60,8 @@ const HomeBackGround = () => {
             </Typography>
           </Box>
         </FlexCenteredColumn>
-        <Box
+        <HomepageLowerContent />
+        {/* <Box
           //keep this flex child height to 50% of parent
           height={"50%"}
           width={"100%"}
@@ -76,7 +79,7 @@ const HomeBackGround = () => {
             <DetailsTabRenderer title="Yantraksh" yantraksh />
             <DetailsTabRenderer title="Events" events />
           </FlexCenteredRow>
-        </Box>
+        </Box> */}
       </FlexCenteredColumn>
 
       <VideoBG
@@ -109,7 +112,7 @@ const MouseTracer = ({ mousePosition }) => {
   );
 };
 
-const TextHeading = () => {
+export const TextHeading = () => {
   const [trigger, setTrigger] = useState(false);
   const text = "YANTRAKSH";
   const currentText = useAnimatedText(text, trigger);

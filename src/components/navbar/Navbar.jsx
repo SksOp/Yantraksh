@@ -18,58 +18,65 @@ const Navbar = () => {
   const [isMobMenuToggled, setMobileMenuToggled] = useState(false);
 
   return (
-    <FlexLeftRow
+    <Box
+      sx={{
+        backdropFilter: "blur(10px)",
+        borderRadius: "2000px",
+      }}
       position={"fixed"}
       right={isDesktop ? "20px" : "0px"}
       top="20px"
-      gap="1.5rem"
       zIndex={3}
+      p={isDesktop ? "3px 20px" : "0px 20px"}
     >
-      {isDesktop && (
-        <>
-          <a href="/">
-            <Typography variant="h5">Home</Typography>
-          </a>
-          <a href="/events">
-            <Typography variant="h5">Events</Typography>
-          </a>
-          <a href="/about">
-            <Typography variant="h5">About</Typography>
-          </a>
-          <a href="/team">
-            <Typography variant="h5">Team</Typography>
-          </a>
-          <a href="/sponsor">
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "#130A44",
-                color: "#FFFFFF",
-                textTransform: "none",
-                borderRadius: "20px",
-                border: "1.5px solid #6E26F4",
-                boxShadow: "inset -2px -1px 21px 7px rgba(96, 102, 255, 0.15)",
-                padding: "0.4rem 1.8rem",
-                "&:hover": {
+      <FlexLeftRow gap="1.5rem">
+        {isDesktop && (
+          <>
+            <a href="/">
+              <Typography variant="h5">Home</Typography>
+            </a>
+            <a href="/events">
+              <Typography variant="h5">Events</Typography>
+            </a>
+            <a href="/about">
+              <Typography variant="h5">About</Typography>
+            </a>
+            <a href="/team">
+              <Typography variant="h5">Team</Typography>
+            </a>
+            <a href="/sponsor">
+              <Button
+                variant="contained"
+                sx={{
                   backgroundColor: "#130A44",
-                },
-              }}
-            >
-              <Typography variant="h5">Sponsor</Typography>
-            </Button>
-          </a>
-        </>
-      )}
-      {!isDesktop && !isMobMenuToggled && (
-        <Hamburger setMobileMenuToggled={setMobileMenuToggled} />
-      )}
-      {!isDesktop && (
-        <HamburgerMenu
-          isMobMenuToggled={isMobMenuToggled}
-          setMobileMenuToggled={setMobileMenuToggled}
-        />
-      )}
-    </FlexLeftRow>
+                  color: "#FFFFFF",
+                  textTransform: "none",
+                  borderRadius: "20px",
+                  border: "1.5px solid #6E26F4",
+                  boxShadow:
+                    "inset -2px -1px 21px 7px rgba(96, 102, 255, 0.15)",
+                  padding: "0.4rem 1.8rem",
+                  "&:hover": {
+                    backgroundColor: "#130A44",
+                  },
+                }}
+              >
+                <Typography variant="h5">Sponsor</Typography>
+              </Button>
+            </a>
+          </>
+        )}
+        {!isDesktop && !isMobMenuToggled && (
+          <Hamburger setMobileMenuToggled={setMobileMenuToggled} />
+        )}
+        {!isDesktop && (
+          <HamburgerMenu
+            isMobMenuToggled={isMobMenuToggled}
+            setMobileMenuToggled={setMobileMenuToggled}
+          />
+        )}
+      </FlexLeftRow>
+    </Box>
   );
 };
 
