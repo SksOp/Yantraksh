@@ -23,7 +23,7 @@ const Navbar = () => {
       right={isDesktop ? "20px" : "0px"}
       top="20px"
       gap="1.5rem"
-      zIndex={2}
+      zIndex={3}
     >
       {isDesktop && (
         <>

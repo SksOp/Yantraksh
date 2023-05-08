@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+
+@font-face {
+  font-family: "Mechanismo";
+  src: url("./assets/MechanismoRegular.otf") format(openType);
+}
+
 :root {
   font-family: "Comic Neue", cursive;
   line-height: 1.5;
@@ -20,4 +26,10 @@ a {
 
 body::-webkit-scrollbar {
   display: none;
+}
+body {
+  scrollbar-width: none;
+  background-color: #040015 !important;
+  overflow: hidden;
+  /* disabling  */
 }
