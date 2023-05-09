@@ -1,5 +1,6 @@
 import React from "react";
 import tableHud from "../../../assets/table_hud.png";
+import mobileTableHud from "../../../assets/hudEventsMobile.png";
 import { Box } from "@mui/system";
 import { useMediaQuery, Slide, Typography } from "@mui/material";
 import FlexTable from "./FlexTable";
@@ -12,15 +13,15 @@ const EventTable = (props) => {
     <>
       <Box
         sx={{
-          backgroundImage: `url(${tableHud})`,
+          backgroundImage: `url(${isDesktop ? tableHud : mobileTableHud})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "100% 100%",
           backdropFilter: "blur(7px)",
           backgroundColor: "rgba(41, 0, 120, 0.18)",
         }}
-        width={isDesktop ? "45%" : "70%"}
-        minWidth={isDesktop ? "45%" : "70%"}
-        height={isDesktop ? "100%" : "80%"}
+        width={isDesktop ? "45%" : "80%"}
+        minWidth={isDesktop ? "45%" : "80%"}
+        height={isDesktop ? "90%" : "80%"}
         m={"1rem"}
         display={"flex"}
         padding={"1rem"}

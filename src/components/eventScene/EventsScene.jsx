@@ -6,37 +6,8 @@ import FlexCenteredRow from "../../muiStyled/FlexCenteredRow";
 import EventTable from "./utils/EventTable";
 import { TextHeading } from "../homeBackGround/HomeBackGround";
 import { videoUrl } from "../../assets/videoUrl";
-
-const data = [
-  {
-    icon: "SmartToy",
-    heading: "ROBOLINER CHALLENGE",
-    formUrl: "https://forms.gle/tohYjZBwfvHSY7yP8",
-    prize: "Winning Prize: 30,000 INR",
-    description: "A competition for line following robots.",
-  },
-  {
-    icon: "Code",
-    heading: "BATTLE OF THE BRAINS: CODING EDITION",
-    formUrl: "https://forms.gle/ZFEmddpEcmWp4g6r9",
-    prize: "Winning Prize: 10,000 INR",
-    description: "The Ultimate Coding Competition of Coders!",
-  },
-  {
-    icon: "School",
-    heading: "HACK-A-FUSION",
-    formUrl: "https://forms.gle/o7cwGWFPNMEfR1KY8",
-    prize: "Winning Prize: 40,000 INR",
-    description: "Theme - Education Technology (EdTech)",
-  },
-  {
-    icon: "PrecisionManufacturing",
-    heading: "STEEL STORM",
-    formUrl: "https://forms.gle/BMTsdyb8LMW1KYB28",
-    prize: "Winning Prize: 40,000 INR",
-    description: "Build the mightiest robot and battle for supremacy!",
-  },
-];
+import machine from "../../assets/machine.jpg";
+import data from "./utils/eventData";
 
 const EventsScene = () => {
   const isDesktop = useMediaQuery("(min-width: 850px)");
@@ -69,7 +40,7 @@ const EventsScene = () => {
         <VideoBG
           videoUrl={videoUrl.machineFace}
           videoType={"webm"}
-          poster={""}
+          poster={machine}
           width={"100%"}
           restrictWidth={false}
           addNoise={true}
