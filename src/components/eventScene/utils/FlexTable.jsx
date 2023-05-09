@@ -14,10 +14,10 @@ const getIconComponent = (iconName, color) => {
 };
 
 const FlexTable = (props) => {
-  const { icon, heading, description, prize, formUrl } = props.data.data;
+  const { id, icon, heading, description, prize, formUrl } = props.data.data;
   console.log("eventtable", props);
 
-  const isDesktop = useMediaQuery("(min-width: 850)");
+  const isDesktop = useMediaQuery("(min-width: 850px)");
 
   return (
     <>
@@ -26,40 +26,111 @@ const FlexTable = (props) => {
           alignItems: "flex-start",
           padding: "1rem",
           justifyContent: "space-evenly",
+          maxWidth: "100%",
         }}
+        gap="1rem"
       >
         {getIconComponent(icon, "white")}
         <Typography
-          variant="h3"
+          variant="h2"
           fontWeight="bold"
           color="white"
           fontFamily="Mechanismo, sans-serif"
+          fontSize={{
+            xs: "2rem",
+            sm: "2rem",
+          }}
         >
           {heading}
         </Typography>
 
-        <Typography variant="body1" textAlign="flex-start" color="white">
-          {description}
-        </Typography>
-        <Button
-          variant="contained"
+        <FlexCenteredColumn sx={{ alignItems: "flex-start" }}>
+          <Typography variant="body1" textAlign="flex-start" color="white">
+            {description}
+          </Typography>
+          <Typography variant="body1" textAlign="flex-start" color="#ACACAC">
+            {prize}
+          </Typography>
+        </FlexCenteredColumn>
+
+        <FlexCenteredRow
           sx={{
-            backgroundColor: "#130A44",
-            color: "#FFFFFF",
-            textTransform: "none",
-            borderRadius: "20px",
-            border: "1.5px solid #6E26F4",
-            boxShadow: "inset -2px -1px 21px 7px rgba(96, 102, 255, 0.15)",
-            padding: "0.4rem 1.8rem",
-            "&:hover": {
-              backgroundColor: "#130A44",
-            },
+            width: "100%",
+            justifyContent: "flex-start",
+            paddingLeft: isDesktop ? "0" : "0.5rem",
           }}
+          gap={isDesktop ? "2rem" : "1rem"}
         >
-          <a target="_blank" href={formUrl}>
-            <Typography variant="h5">{prize}</Typography>
-          </a>
-        </Button>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#130A44",
+              color: "#FFFFFF",
+              textTransform: "none",
+              borderRadius: "20px",
+              border: "1.5px solid #6E26F4",
+              padding: isDesktop ? "0.4rem 1rem" : "0.4rem 1rem",
+              width: isDesktop ? "12rem" : "7rem",
+              boxShadow: "inset -2px -1px 21px 7px rgba(96, 102, 255, 0.15)",
+              padding: "0.4rem 1.8rem",
+              "&:hover": {
+                backgroundColor: "#130A44",
+              },
+            }}
+          >
+            {/* <Link
+              to="/about"
+              color="inherit"
+              underline="none"
+              sx={{ textDecoration: "none" }}
+            > */}
+            <a href={`/events/id?id=${id}`}>
+              <Typography
+                variant="h5"
+                fontSize={{
+                  xs: "0.5rem",
+                  sm: "0.5rem",
+                  md: "1rem",
+                  lg: "1rem",
+                }}
+              >
+                More Details
+              </Typography>
+            </a>
+            {/* </Link> */}
+          </Button>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#130A44",
+              color: "#FFFFFF",
+              textTransform: "none",
+              borderRadius: "20px",
+              border: "1.5px solid #6E26F4",
+              padding: isDesktop ? "0.4rem 1rem" : "0.4rem 1rem",
+              width: isDesktop ? "12rem" : "7rem",
+              boxShadow: "inset -2px -1px 21px 7px rgba(96, 102, 255, 0.15)",
+              padding: "0.4rem 1.8rem",
+              "&:hover": {
+                backgroundColor: "#130A44",
+              },
+            }}
+          >
+            <a target="_blank" href={formUrl}>
+              <Typography
+                variant="h5"
+                fontSize={{
+                  xs: "0.5rem",
+                  sm: "0.5rem",
+                  md: "1rem",
+                  lg: "1rem",
+                }}
+              >
+                Register Here
+              </Typography>
+            </a>
+          </Button>
+        </FlexCenteredRow>
       </FlexCenteredColumn>
     </>
   );
