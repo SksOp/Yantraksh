@@ -2,11 +2,6 @@ import React from "react";
 import { Box } from "@mui/material";
 import FlexCenteredColumn from "../../../muiStyled/FlexCenteredColumn";
 import FlexCenteredRow from "../../../muiStyled/FlexCenteredRow";
-import dayjs from "dayjs";
-import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 const HomepageLowerContent = () => {
   return (
     <FlexCenteredColumn
@@ -27,17 +22,7 @@ const HomepageLowerContent = () => {
           borderRadius: "20px",
         }}
         pb={"30px"}
-      >
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateCalendar
-            defaultValue={dayjs("2022-04-17")}
-            readOnly
-            sx={{
-              backgroundColor: "white",
-            }}
-          />
-        </LocalizationProvider>
-      </FlexCenteredColumn>
+      ></FlexCenteredColumn>
       <FlexCenteredRow width={"100%"} height={"50px"} backgroundColor={"red"}>
         {" "}
       </FlexCenteredRow>
