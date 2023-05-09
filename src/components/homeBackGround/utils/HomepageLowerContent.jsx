@@ -71,7 +71,7 @@ const CircleRenderer = ({ activecard, index, setActiveCard }) => {
       width={isActive ? "25px" : "20px"}
       sx={{
         backgroundColor: activecard === index ? "#FFFFFF" : "#6E26F4",
-        transition: "all 0.2s ease-in-out",
+        transition: "all 0.4s ease-in-out",
       }}
       onMouseEnter={() => setActiveCard(index)}
       onClick={() => setActiveCard(index)}
@@ -86,6 +86,7 @@ const CircleRenderer = ({ activecard, index, setActiveCard }) => {
           backgroundColor: "white",
           border: "1px solid #FFFFFF",
           transform: "translate(-50%,-50%)",
+          transition: "all 0.4s ease-in-out",
         }}
         borderRadius={"20px"}
         top={"50%"}
