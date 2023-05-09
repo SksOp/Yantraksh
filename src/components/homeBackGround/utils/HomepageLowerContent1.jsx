@@ -15,11 +15,11 @@ const HomepageLowerContent1 = () => {
         zIndex={2}
         maxWidth={"800px"}
         padding={"0 1.7rem"}
-        pb={"3rem"}
         sx={{
-          justifyContent: "space-around",
+          justifyContent: "center",
           flexDirection: "column-reverse",
         }}
+        gap="2rem"
       >
         <FlexCenteredRow
           width={"100%"}

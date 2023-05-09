@@ -5,5 +5,6 @@ export const videoUrl = {
     "https://res.cloudinary.com/dbz9wkcqz/video/upload/v1683631904/nebula_ioan8z.webm",
   machineFace:
     "https://res.cloudinary.com/dbz9wkcqz/video/upload/v1683631906/eventSceneBG_spnlaw.webm",
-  new: "gfhg",
+
+  city: "https://res.cloudinary.com/dbz9wkcqz/video/upload/v1683665537/city_emq4jd.mp4",
 };

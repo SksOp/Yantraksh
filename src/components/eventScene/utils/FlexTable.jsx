@@ -61,75 +61,8 @@ const FlexTable = (props) => {
           }}
           gap={isDesktop ? "2rem" : "1rem"}
         >
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#130A44",
-              color: "#FFFFFF",
-              textTransform: "none",
-              borderRadius: "20px",
-              border: "1.5px solid #6E26F4",
-              padding: isDesktop ? "0.4rem 1rem" : "0.4rem 1rem",
-              width: isDesktop ? "12rem" : "7rem",
-              boxShadow: "inset -2px -1px 21px 7px rgba(96, 102, 255, 0.15)",
-              padding: "0.4rem 1.8rem",
-              "&:hover": {
-                backgroundColor: "#130A44",
-              },
-            }}
-          >
-            {/* <Link
-              to="/about"
-              color="inherit"
-              underline="none"
-              sx={{ textDecoration: "none" }}
-            > */}
-            <a href={`/events/id?id=${id}`}>
-              <Typography
-                variant="h5"
-                fontSize={{
-                  xs: "0.5rem",
-                  sm: "0.5rem",
-                  md: "1rem",
-                  lg: "1rem",
-                }}
-              >
-                More Details
-              </Typography>
-            </a>
-            {/* </Link> */}
-          </Button>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#130A44",
-              color: "#FFFFFF",
-              textTransform: "none",
-              borderRadius: "20px",
-              border: "1.5px solid #6E26F4",
-              padding: isDesktop ? "0.4rem 1rem" : "0.4rem 1rem",
-              width: isDesktop ? "12rem" : "7rem",
-              boxShadow: "inset -2px -1px 21px 7px rgba(96, 102, 255, 0.15)",
-              padding: "0.4rem 1.8rem",
-              "&:hover": {
-                backgroundColor: "#130A44",
-              },
-            }}
-          >
-            <a target="_blank" href={formUrl}>
-              <Typography
-                variant="h5"
-                fontSize={{
-                  xs: "0.5rem",
-                  sm: "0.5rem",
-                  md: "1rem",
-                  lg: "1rem",
-                }}
-              >
-                Register Here
-              </Typography>
-            </a>
-          </Button>
+          <ButtonComp url={`/events/id?id=${id}`} title={"More Details"} />
+          <ButtonComp url={formUrl} title={"Register Here"} isBlanck />
         </FlexCenteredRow>
       </FlexCenteredColumn>
     </>
@@ -137,3 +70,40 @@ const FlexTable = (props) => {
 };
 
 export default FlexTable;
+
+export const ButtonComp = ({ url, title, isBlanck }) => {
+  const isDesktop = useMediaQuery("(min-width: 850px)");
+  return (
+    <Button
+      variant="contained"
+      sx={{
+        backgroundColor: "#130A44",
+        color: "#FFFFFF",
+        textTransform: "none",
+        borderRadius: "20px",
+        border: "1.5px solid #6E26F4",
+        padding: isDesktop ? "0.4rem 1rem" : "0.4rem 1rem",
+        width: isDesktop ? "12rem" : "7rem",
+        boxShadow: "inset -2px -1px 21px 7px rgba(96, 102, 255, 0.15)",
+        padding: "0.4rem 1.8rem",
+        "&:hover": {
+          backgroundColor: "#130A44",
+        },
+      }}
+    >
+      <a target={isBlanck ? "_blank" : "_parent"} href={url}>
+        <Typography
+          variant="h5"
+          fontSize={{
+            xs: "0.5rem",
+            sm: "0.5rem",
+            md: "1rem",
+            lg: "1rem",
+          }}
+        >
+          {title}
+        </Typography>
+      </a>
+    </Button>
+  );
+};

@@ -6,8 +6,8 @@ import FlexCenteredRow from "../../muiStyled/FlexCenteredRow";
 import EventTable from "./utils/EventTable";
 import { TextHeading } from "../homeBackGround/HomeBackGround";
 import { videoUrl } from "../../assets/videoUrl";
-import machine from "../../assets/machine.jpg";
-import data from "./utils/eventData";
+import city from "../../assets/city.jpg";
+import data from "../../assets/eventData";
 
 const EventsScene = () => {
   const isDesktop = useMediaQuery("(min-width: 850px)");
@@ -38,9 +38,9 @@ const EventsScene = () => {
           })}
         </FlexCenteredRow>
         <VideoBG
-          videoUrl={videoUrl.machineFace}
+          videoUrl={videoUrl.city}
           videoType={"webm"}
-          poster={machine}
+          poster={city}
           width={"100%"}
           restrictWidth={false}
           addNoise={true}

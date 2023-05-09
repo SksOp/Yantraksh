@@ -39,7 +39,7 @@ const Navbar = () => {
         position={"fixed"}
         right={isDesktop ? "20px" : "0px"}
         top="20px"
-        zIndex={3}
+        zIndex={99}
         p={isDesktop ? "3px 20px" : "0px 20px"}
       >
         <FlexLeftRow gap="1.5rem">
