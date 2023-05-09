@@ -1,67 +1,69 @@
 import React, { useEffect, useState } from "react";
-import { Box, Slide, Typography, Grow, Fade } from "@mui/material";
+import { Box, Typography, useMediaQuery, Fade } from "@mui/material";
 import FlexCenteredColumn from "../../../muiStyled/FlexCenteredColumn";
 import FlexCenteredRow from "../../../muiStyled/FlexCenteredRow";
 import { data } from "../../../assets/homePageCardData";
 import card from "../../../assets/homePageCard.png";
-const HomepageLowerContent = () => {
+const HomepageLowerContent1 = () => {
   const [activecard, setActiveCard] = useState(2);
-
+  const isDesktop = useMediaQuery("(min-width:600px)");
   return (
-    <FlexCenteredColumn
-      height={"50%"}
-      width={"100%"}
-      zIndex={2}
-      maxWidth={"800px"}
-      padding={"0 1.7rem"}
-      pb={"3rem"}
-      sx={{
-        justifyContent: "space-around",
-        flexDirection: "column-reverse",
-      }}
-    >
-      <FlexCenteredRow
+    <>
+      <FlexCenteredColumn
+        minHeight={isDesktop ? "50vh" : "60vh"}
         width={"100%"}
-        height={"4px"}
+        zIndex={2}
+        maxWidth={"800px"}
+        padding={"0 1.7rem"}
+        pb={"3rem"}
         sx={{
-          background:
-            " linear-gradient(270deg, rgba(110, 38, 244, 0) 9.56%, #FFFFFF 47.73%, rgba(110, 38, 244, 0) 91.89%)",
+          justifyContent: "space-around",
+          flexDirection: "column-reverse",
         }}
-        position={"relative"}
       >
         <FlexCenteredRow
           width={"100%"}
-          position={"absolute"}
-          padding={"0 4rem"}
+          height={"4px"}
+          sx={{
+            background:
+              " linear-gradient(270deg, rgba(110, 38, 244, 0) 9.56%, #FFFFFF 47.73%, rgba(110, 38, 244, 0) 91.89%)",
+          }}
+          position={"relative"}
         >
-          {data.map((_, index) => {
+          <FlexCenteredRow
+            width={"100%"}
+            position={"absolute"}
+            padding={"0 4rem"}
+          >
+            {data.map((_, index) => {
+              return (
+                <CircleRenderer
+                  activecard={activecard}
+                  index={index}
+                  setActiveCard={setActiveCard}
+                />
+              );
+            })}
+          </FlexCenteredRow>
+        </FlexCenteredRow>
+        <FlexCenteredRow height={"50%"}>
+          {data.map((item, index) => {
             return (
-              <CircleRenderer
+              <HomePageCardRenderer
                 activecard={activecard}
                 index={index}
-                setActiveCard={setActiveCard}
+                key={index + "cardrederer"}
+                item={item}
               />
             );
           })}
         </FlexCenteredRow>
-      </FlexCenteredRow>
-      <FlexCenteredRow height={"50%"}>
-        {data.map((item, index) => {
-          return (
-            <HomePageCardRenderer
-              activecard={activecard}
-              index={index}
-              key={index + "cardrederer"}
-              item={item}
-            />
-          );
-        })}
-      </FlexCenteredRow>
-    </FlexCenteredColumn>
+      </FlexCenteredColumn>
+    </>
   );
 };
 
-export default HomepageLowerContent;
+export default HomepageLowerContent1;
 
 const CircleRenderer = ({ activecard, index, setActiveCard }) => {
   const isActive = activecard === index;
@@ -132,7 +134,7 @@ const HomePageCardRenderer = ({ activecard, index, item }) => {
             <Box p="1rem" textAlign={"center"}>
               <Typography
                 variant="h1"
-                fontSize={"1rem"}
+                fontSize={"1.5rem"}
                 sx={{ color: "white" }}
               >
                 {item.title}

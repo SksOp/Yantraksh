@@ -10,12 +10,15 @@ import FlexLeftColumn from "../../muiStyled/FlexLeftColumn";
 import FlexCenteredRow from "../../muiStyled/FlexCenteredRow";
 import nebulaPoster from "../../assets/nebulaposter.jpg";
 import halfCircle from "../../assets/halfCircle.svg";
-import HomepageLowerContent from "./utils/HomepageLowerContent";
+import HomepageLowerContent1 from "./utils/HomepageLowerContent1";
+import HomepageLowerContent2 from "./utils/HomepageLowerContent2";
 import { videoUrl } from "../../assets/videoUrl";
 
 const HomeBackGround = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const parentRef = useRef(null);
+  const [scrollCount, setScrollCount] = useState(0);
+
   function handleMouseMove(e) {
     const { clientX, clientY } = e;
     if (parentRef.current) {
@@ -27,67 +30,23 @@ const HomeBackGround = () => {
   return (
     <>
       <FlexCenteredColumn
-        height={"100vh"}
         width={"100%"}
         zIndex={1}
         sx={{
           justifyContent: "space-around",
         }}
+        onWheel={() => {
+          setScrollCount(scrollCount + 1);
+          console.log({ wheel: "dfds", scrollCount });
+        }}
+        onScroll={() => {
+          setScrollCount(scrollCount + 1);
+          console.log(scrollCount);
+        }}
       >
-        <FlexCenteredColumn
-          height={isDesktop ? "50%" : "40%"}
-          sx={{
-            justifyContent: isDesktop ? "center" : "center",
-          }}
-          gap={"1rem"}
-          padding={"4rem 1rem"}
-        >
-          <TextHeading />
-          <Box
-            zIndex={2}
-            padding={"0.5rem 1.2rem"}
-            borderRadius={"0.5rem"}
-            sx={{
-              backgroundColor: alpha("#130A44", 0.3),
-              ":hover": {
-                backgroundColor: alpha("#130A44", 0.6),
-              },
-            }}
-          >
-            <Typography
-              variant="h3"
-              fontSize={{
-                xs: "0.7rem",
-                sm: "1rem",
-                md: "1.3rem",
-                lg: "1.3rem",
-              }}
-              sx={{ color: "#FFFFFF" }}
-            >
-              <span>Assam University, Silchar 2023</span>
-            </Typography>
-          </Box>
-        </FlexCenteredColumn>
-        <HomepageLowerContent />
-        {/* <Box
-          //keep this flex child height to 50% of parent
-          height={"50%"}
-          width={"100%"}
-          zIndex={2}
-          padding={"0 1.7rem"}
-        >
-          <FlexCenteredRow
-            ref={parentRef}
-            onMouseMove={handleMouseMove}
-            className="mouse-tracker"
-            flexDirection={isDesktop ? "row" : "column"}
-            height={isDesktop ? "100%" : "unset"}
-          >
-            <MouseTracer mousePosition={mousePosition} />
-            <DetailsTabRenderer title="Yantraksh" yantraksh />
-            <DetailsTabRenderer title="Events" events />
-          </FlexCenteredRow>
-        </Box> */}
+        <TextHeadingContainer />
+        <HomepageLowerContent1 />
+        <HomepageLowerContent2 />
       </FlexCenteredColumn>
 
       <VideoBG
@@ -120,6 +79,47 @@ const MouseTracer = ({ mousePosition }) => {
   );
 };
 
+const TextHeadingContainer = () => {
+  const isDesktop = useMediaQuery("(min-width:600px)");
+  return (
+    <FlexCenteredColumn
+      minHeight={isDesktop ? "50vh" : "40vh"}
+      sx={{
+        justifyContent: isDesktop ? "center" : "center",
+      }}
+      gap={"1rem"}
+      padding={"4rem 1rem"}
+    >
+      <TextHeading />
+
+      <Box
+        zIndex={2}
+        padding={"0.5rem 1.2rem"}
+        borderRadius={"0.5rem"}
+        sx={{
+          backgroundColor: alpha("#130A44", 0.3),
+          ":hover": {
+            backgroundColor: alpha("#130A44", 0.6),
+          },
+        }}
+      >
+        <Typography
+          variant="h3"
+          fontSize={{
+            xs: "0.7rem",
+            sm: "1rem",
+            md: "1.3rem",
+            lg: "1.3rem",
+          }}
+          sx={{ color: "#FFFFFF" }}
+        >
+          <span>Assam University, Silchar 2023</span>
+        </Typography>
+      </Box>
+    </FlexCenteredColumn>
+  );
+};
+
 export const TextHeading = () => {
   const [trigger, setTrigger] = useState(false);
   const text = "YANTRAKSH";
@@ -127,7 +127,6 @@ export const TextHeading = () => {
   useEffect(() => {
     setTimeout(() => {
       setTrigger(true);
-      console.log("dddd");
     }, 1);
   }, []);
   const handleMouseEnter = () => {
