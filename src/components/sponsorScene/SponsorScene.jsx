@@ -1,7 +1,5 @@
 import React, { useRef, useEffect } from "react";
 import "./SponsorScene.css";
-import { sponsorData } from "../../assets/sponsorData";
-import CardRendered from "../cardRenderer/CardRendered";
 import FlexCenteredRow from "../../muiStyled/FlexCenteredRow";
 import FlexCenteredColumn from "../../muiStyled/FlexCenteredColumn";
 import { useMediaQuery, Button, IconButton } from "@mui/material";
@@ -9,7 +7,6 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Box } from "@mui/material";
 import VideoBG from "../utils/VideoBG";
-import robot from "../../assets/robot.webm";
 import robotPoster from "../../assets/robotposter.jpg";
 import Selector from "./utils/Selector";
 import Renderer from "./utils/Renderer";
@@ -19,7 +16,7 @@ import { Drawer, Avatar, Snackbar, Typography } from "@mui/material";
 import FlexLeftColumn from "../../muiStyled/FlexLeftColumn";
 import CallIcon from "@mui/icons-material/Call";
 import EmailIcon from "@mui/icons-material/Email";
-
+import { videoUrl } from "../../assets/videoUrl";
 import CloseIcon from "@mui/icons-material/Close";
 import copy from "copy-to-clipboard";
 import FlexLeftRow from "../../muiStyled/FlexLeftRow";
@@ -74,7 +71,7 @@ const SponsorScene = () => {
           )}
         </FlexCenteredRow>
         <VideoBG
-          videoUrl={robot}
+          videoUrl={videoUrl.robot}
           videoType={"webm"}
           poster={robotPoster}
           width={"110%"}

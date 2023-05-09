@@ -1,11 +1,11 @@
 import React from "react";
 import VideoBG from "../utils/VideoBG";
-import eventBg from "../../assets/eventSceneBG.webm";
 import { useMediaQuery } from "@mui/material";
 import FlexCenteredColumn from "../../muiStyled/FlexCenteredColumn";
 import FlexCenteredRow from "../../muiStyled/FlexCenteredRow";
 import EventTable from "./utils/EventTable";
 import { TextHeading } from "../homeBackGround/HomeBackGround";
+import { videoUrl } from "../../assets/videoUrl";
 
 const data = [
   {
@@ -67,7 +67,7 @@ const EventsScene = () => {
           })}
         </FlexCenteredRow>
         <VideoBG
-          videoUrl={eventBg}
+          videoUrl={videoUrl.machineFace}
           videoType={"webm"}
           poster={""}
           width={"100%"}

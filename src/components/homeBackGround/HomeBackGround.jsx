@@ -8,10 +8,11 @@ import { useState, useEffect, useRef } from "react";
 import { HorizontalLine } from "../navbar/Navbar";
 import FlexLeftColumn from "../../muiStyled/FlexLeftColumn";
 import FlexCenteredRow from "../../muiStyled/FlexCenteredRow";
-import nebula from "../../assets/nebula.webm";
 import nebulaPoster from "../../assets/nebulaposter.jpg";
 import halfCircle from "../../assets/halfCircle.svg";
 import HomepageLowerContent from "./utils/HomepageLowerContent";
+import { videoUrl } from "../../assets/videoUrl";
+
 const HomeBackGround = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const parentRef = useRef(null);
@@ -91,7 +92,7 @@ const HomeBackGround = () => {
 
       <VideoBG
         restrictWidth={true}
-        videoUrl={nebula}
+        videoUrl={videoUrl.nebula}
         poster={nebulaPoster}
         videoType={"webm"}
       />

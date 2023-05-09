@@ -1,7 +1,3 @@
-import v1 from "./v1.mp4";
-import v2 from "./v2.mp4";
-import foodv from "./foodv.mp4";
-
 export const sponsorData = [
   {
     title: "Title ",
@@ -15,7 +11,6 @@ export const sponsorData = [
       `All the banners of techfest will be including the tiltle sponsor
       presents Yantraksh 2023.`,
     ],
-    url: v1,
     type: "mp4",
   },
   {
@@ -33,7 +28,6 @@ export const sponsorData = [
       `All the banners of the techfest will be including the associate
       co-presents Yantraksh 2023.`,
     ],
-    url: v2,
     type: "mp4",
   },
   {
@@ -49,7 +43,6 @@ export const sponsorData = [
       `Sponsor will have the privilege to setup exhibitions and
       stall at strategic locations in the campus`,
     ],
-    url: foodv,
     type: "mp4",
   },
   {
@@ -66,7 +59,6 @@ export const sponsorData = [
       `All Banners and posters of all event will be including sponsor
       name      `,
     ],
-    url: v1,
     type: "mp4",
   },
   {
@@ -83,7 +75,6 @@ export const sponsorData = [
       `All Banners and posters of all event will be including
       sponsor name.`,
     ],
-    url: v2,
     type: "mp4",
   },
   {
@@ -98,7 +89,6 @@ export const sponsorData = [
       `Event partner will be provided the prime stall space to sell
       their products throughout the event .`,
     ],
-    url: v1,
     type: "mp4",
   },
 ];
