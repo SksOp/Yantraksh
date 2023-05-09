@@ -3,8 +3,6 @@ import "./SponsorScene.css";
 import FlexCenteredRow from "../../muiStyled/FlexCenteredRow";
 import FlexCenteredColumn from "../../muiStyled/FlexCenteredColumn";
 import { useMediaQuery, Button, IconButton } from "@mui/material";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Box } from "@mui/material";
 import VideoBG from "../utils/VideoBG";
 import robotPoster from "../../assets/robotposter.jpg";
@@ -141,7 +139,7 @@ const constactsDetails = [
   },
 ];
 
-const DrawerContent = () => {
+export const DrawerContent = () => {
   const [open, setOpen] = React.useState(false);
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -172,9 +170,6 @@ const DrawerContent = () => {
         message="Copied to clipboard"
       />
       <FlexLeftColumn
-        width={"70%"}
-        minwidth={"300px"}
-        maxWidth={"500px"}
         sx={{
           justifyContent: "flex-start",
           backdropFilter: "blur(7px)",

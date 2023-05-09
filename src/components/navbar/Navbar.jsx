@@ -8,75 +8,113 @@ import {
   Typography,
   useMediaQuery,
   alpha,
+  Avatar,
+  Snackbar,
+  IconButton,
 } from "@mui/material";
+
+import FlexCenteredRow from "../../muiStyled/FlexCenteredRow";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import FlexCenteredColumn from "../../muiStyled/FlexCenteredColumn";
 
+import FlexLeftColumn from "../../muiStyled/FlexLeftColumn";
+import CallIcon from "@mui/icons-material/Call";
+import EmailIcon from "@mui/icons-material/Email";
+import { videoUrl } from "../../assets/videoUrl";
+import copy from "copy-to-clipboard";
+import { DrawerContent } from "../sponsorScene/SponsorScene";
+
 const Navbar = () => {
   const isDesktop = useMediaQuery("(min-width:600px)");
   const [isMobMenuToggled, setMobileMenuToggled] = useState(false);
-
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
   return (
-    <Box
-      sx={{
-        backdropFilter: "blur(10px)",
-        borderRadius: "2000px",
-      }}
-      position={"fixed"}
-      right={isDesktop ? "20px" : "0px"}
-      top="20px"
-      zIndex={3}
-      p={isDesktop ? "3px 20px" : "0px 20px"}
-    >
-      <FlexLeftRow gap="1.5rem">
-        {isDesktop && (
-          <>
-            <a href="/">
-              <Typography variant="h5">Home</Typography>
-            </a>
-            <a href="/events">
-              <Typography variant="h5">Events</Typography>
-            </a>
-            {/* <a href="/about">
+    <>
+      <Box
+        sx={{
+          backdropFilter: "blur(10px)",
+          borderRadius: "2000px",
+        }}
+        position={"fixed"}
+        right={isDesktop ? "20px" : "0px"}
+        top="20px"
+        zIndex={3}
+        p={isDesktop ? "3px 20px" : "0px 20px"}
+      >
+        <FlexLeftRow gap="1.5rem">
+          {isDesktop && (
+            <>
+              <a href="/">
+                <Typography variant="h5">Home</Typography>
+              </a>
+              <a href="/events">
+                <Typography variant="h5">Events</Typography>
+              </a>
+
+              {/* <a href="/about">
               <Typography variant="h5">About</Typography>
-            </a>
-            <a href="/team">
+              </a>
+              <a href="/team">
               <Typography variant="h5">Team</Typography>
             </a> */}
-            <a href="/sponsor">
-              <Button
-                variant="contained"
+              <Typography
+                variant="h5"
+                color={"white"}
+                onClick={() => setIsDrawerOpen(true)}
                 sx={{
-                  backgroundColor: "#130A44",
-                  color: "#FFFFFF",
-                  textTransform: "none",
-                  borderRadius: "20px",
-                  border: "1.5px solid #6E26F4",
-                  boxShadow:
-                    "inset -2px -1px 21px 7px rgba(96, 102, 255, 0.15)",
-                  padding: "0.4rem 1.8rem",
-                  "&:hover": {
-                    backgroundColor: "#130A44",
-                  },
+                  cursor: "pointer",
                 }}
               >
-                <Typography variant="h5">Sponsor</Typography>
-              </Button>
-            </a>
-          </>
-        )}
-        {!isDesktop && !isMobMenuToggled && (
-          <Hamburger setMobileMenuToggled={setMobileMenuToggled} />
-        )}
-        {!isDesktop && (
-          <HamburgerMenu
-            isMobMenuToggled={isMobMenuToggled}
-            setMobileMenuToggled={setMobileMenuToggled}
-          />
-        )}
-      </FlexLeftRow>
-    </Box>
+                Contact Us
+              </Typography>
+              <a href="/sponsor">
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "#130A44",
+                    color: "#FFFFFF",
+                    textTransform: "none",
+                    borderRadius: "20px",
+                    border: "1.5px solid #6E26F4",
+                    boxShadow:
+                      "inset -2px -1px 21px 7px rgba(96, 102, 255, 0.15)",
+                    padding: "0.4rem 1.8rem",
+                    "&:hover": {
+                      backgroundColor: "#130A44",
+                    },
+                  }}
+                >
+                  <Typography variant="h5">Sponsor Us</Typography>
+                </Button>
+              </a>
+            </>
+          )}
+          {!isDesktop && !isMobMenuToggled && (
+            <Hamburger setMobileMenuToggled={setMobileMenuToggled} />
+          )}
+          {!isDesktop && (
+            <HamburgerMenu
+              setIsDrawerOpen={setIsDrawerOpen}
+              isMobMenuToggled={isMobMenuToggled}
+              setMobileMenuToggled={setMobileMenuToggled}
+            />
+          )}
+        </FlexLeftRow>
+      </Box>
+      <Drawer
+        anchor={"bottom"}
+        open={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+        sx={{
+          "& .MuiDrawer-paper": {
+            backgroundColor: "transparent",
+          },
+        }}
+      >
+        <DrawerContent />
+      </Drawer>
+    </>
   );
 };
 
@@ -95,7 +133,7 @@ const Hamburger = ({ setMobileMenuToggled }) => {
 };
 
 const HamburgerMenu = (props) => {
-  const { isMobMenuToggled, setMobileMenuToggled } = props;
+  const { isMobMenuToggled, setMobileMenuToggled, setIsDrawerOpen } = props;
   return (
     <Drawer
       anchor="right"
@@ -145,6 +183,17 @@ const HamburgerMenu = (props) => {
           <Typography variant="h3">Events</Typography>
         </a>
         <HorizontalLine />
+        <Typography
+          variant="h3"
+          onClick={() => setIsDrawerOpen(true)}
+          sx={{
+            cursor: "pointer",
+          }}
+        >
+          Contact Us
+        </Typography>
+
+        <HorizontalLine />
         {/* <a href="/about">
           <Typography variant="h3">About</Typography>
         </a>
@@ -170,7 +219,7 @@ const HamburgerMenu = (props) => {
               },
             }}
           >
-            <Typography variant="h3">Sponsor</Typography>
+            <Typography variant="h3">Sponsor Us</Typography>
           </Button>
         </a>
       </FlexCenteredColumn>
