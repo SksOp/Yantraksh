@@ -16,7 +16,7 @@ function App() {
         <CssBaseline />
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          {/* <Route path="/events" element={<Events />}></Route> */}
+          <Route path="/events" element={<Events />}></Route>
           <Route path="/sponsor" element={<Sponsor />}></Route>
           <Route path="/*" element={<Navigate to={"/"} />}></Route>
         </Routes>
