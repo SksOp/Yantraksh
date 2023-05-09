@@ -38,12 +38,12 @@ const Navbar = () => {
             <a href="/events">
               <Typography variant="h5">Events</Typography>
             </a>
-            <a href="/about">
+            {/* <a href="/about">
               <Typography variant="h5">About</Typography>
             </a>
             <a href="/team">
               <Typography variant="h5">Team</Typography>
-            </a>
+            </a> */}
             <a href="/sponsor">
               <Button
                 variant="contained"
@@ -145,18 +145,15 @@ const HamburgerMenu = (props) => {
           <Typography variant="h3">Events</Typography>
         </a>
         <HorizontalLine />
-        <a href="/events">
-          <Typography variant="h3">Events</Typography>
-        </a>
-        <HorizontalLine />
-        <a href="/about">
+        {/* <a href="/about">
           <Typography variant="h3">About</Typography>
         </a>
         <HorizontalLine />
         <a href="/team">
           <Typography variant="h3">Team</Typography>
-        </a>
+        </a> 
         <HorizontalLine />
+        */}
         <a href="/sponsor">
           <Button
             variant="contained"

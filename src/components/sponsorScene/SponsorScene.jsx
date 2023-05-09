@@ -15,11 +15,13 @@ import Selector from "./utils/Selector";
 import Renderer from "./utils/Renderer";
 import MobDetailHub from "./utils/MobDetailHub";
 import { TextHeading } from "../homeBackGround/HomeBackGround";
+import { Drawer } from "@mui/material";
+
 const SponsorScene = () => {
   const isDesktop = useMediaQuery("(min-width: 850px)");
   const [selectedSponsor, setSelectedSponsor] = React.useState(0);
   const [isSelectorActive, setIsSelectorActive] = React.useState(true);
-
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
   const seletorProp = {
     isSelectorActive,
     setIsSelectorActive,
@@ -30,48 +32,51 @@ const SponsorScene = () => {
     selectedSponsor,
     isSelectorActive,
     setIsSelectorActive,
+    setIsDrawerOpen,
   };
   return (
-    <FlexCenteredColumn
-      height={"100vh"}
-      width={"100%"}
-      sx={{ justifyContent: "flex-start" }}
-      padding={"3rem 0"}
-      gap={"2rem"}
-    >
-      {" "}
-      <FlexCenteredRow height={isDesktop ? "40%" : "20%"}>
-        <TextHeading />
-      </FlexCenteredRow>
-      <FlexCenteredRow
-        zIndex={3}
+    <>
+      <FlexCenteredColumn
+        height={"100vh"}
         width={"100%"}
-        height={"60%"}
-        mb={isDesktop ? "3rem" : "0"}
-        position={"relative"}
+        sx={{ justifyContent: "flex-start" }}
+        padding={"3rem 0"}
+        gap={"2rem"}
       >
-        {isDesktop && (
-          <>
-            <Selector {...seletorProp} />
-            <Renderer {...rendererProp} />
-          </>
-        )}
-        {!isDesktop && (
-          <>
-            {isSelectorActive && <Selector {...seletorProp} />}
-            {!isSelectorActive && <MobDetailHub {...rendererProp} />}
-          </>
-        )}
-      </FlexCenteredRow>
-      <VideoBG
-        videoUrl={robot}
-        videoType={"webm"}
-        poster={robotPoster}
-        width={"110%"}
-        restrictWidth={false}
-        addNoise={true}
-      />
-    </FlexCenteredColumn>
+        {" "}
+        <FlexCenteredRow height={isDesktop ? "40%" : "20%"}>
+          <TextHeading />
+        </FlexCenteredRow>
+        <FlexCenteredRow
+          zIndex={3}
+          width={"100%"}
+          height={"60%"}
+          mb={isDesktop ? "3rem" : "0"}
+          position={"relative"}
+        >
+          {isDesktop && (
+            <>
+              <Selector {...seletorProp} />
+              <Renderer {...rendererProp} />
+            </>
+          )}
+          {!isDesktop && (
+            <>
+              {isSelectorActive && <Selector {...seletorProp} />}
+              {!isSelectorActive && <MobDetailHub {...rendererProp} />}
+            </>
+          )}
+        </FlexCenteredRow>
+        <VideoBG
+          videoUrl={robot}
+          videoType={"webm"}
+          poster={robotPoster}
+          width={"110%"}
+          restrictWidth={false}
+          addNoise={true}
+        />
+      </FlexCenteredColumn>
+    </>
   );
 };
 

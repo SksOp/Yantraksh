@@ -15,7 +15,12 @@ import FlexCenteredColumn from "../../../muiStyled/FlexCenteredColumn";
 import FlexLeftRow from "../../../muiStyled/FlexLeftRow";
 import FlexLeftColumn from "../../../muiStyled/FlexLeftColumn";
 const MobDetailHub = (props) => {
-  const { selectedSponsor, isSelectorActive, setIsSelectorActive } = props;
+  const {
+    selectedSponsor,
+    isSelectorActive,
+    setIsSelectorActive,
+    setIsDrawerOpen,
+  } = props;
   const handleBackClick = () => setIsSelectorActive(true);
 
   const [data, setData] = React.useState(sponsorData[selectedSponsor]);
@@ -58,7 +63,7 @@ const MobDetailHub = (props) => {
           <FlexLeftColumn maxWidth={470} margin="10px 15px" gap={"1rem"}>
             <FlexLeftRow ml={"1.5rem"}>
               <Button
-                variant="contained"
+                onClick={() => setIsDrawerOpen(true)}
                 sx={{
                   backgroundColor: "#130A44",
                   color: "#FFFFFF",

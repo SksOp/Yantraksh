@@ -8,7 +8,7 @@ import FlexCenteredColumn from "../../../muiStyled/FlexCenteredColumn";
 import FlexLeftRow from "../../../muiStyled/FlexLeftRow";
 import FlexLeftColumn from "../../../muiStyled/FlexLeftColumn";
 
-const Renderer = ({ selectedSponsor }) => {
+const Renderer = ({ selectedSponsor, setIsDrawerOpen }) => {
   const isDesktop = useMediaQuery("(min-width: 850px)");
 
   return (
@@ -27,6 +27,7 @@ const Renderer = ({ selectedSponsor }) => {
                 data={sponsor}
                 selectedSponsor={selectedSponsor}
                 index={index}
+                setIsDrawerOpen={setIsDrawerOpen}
               />
             );
           })}
@@ -38,7 +39,7 @@ const Renderer = ({ selectedSponsor }) => {
 export default Renderer;
 
 const EachSponsorRenderer = (props) => {
-  const { data, selectedSponsor, index } = props;
+  const { data, selectedSponsor, index, setIsDrawerOpen } = props;
   const [isActive, setIsActive] = React.useState(false);
   const isDesktop = useMediaQuery("(min-width: 850px)");
   useEffect(() => {
@@ -61,12 +62,16 @@ const EachSponsorRenderer = (props) => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "100% 100%",
           backdropFilter: "blur(7px)",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
         }}
         width={"100%"}
         height={"100%"}
         position={"absolute"}
         tops={"0"}
         left={"0"}
+        overflow={"auto"}
       >
         <FlexCenteredColumn width="100%" p={"1.5rem 0"}>
           <Typography
@@ -82,9 +87,11 @@ const EachSponsorRenderer = (props) => {
             maxWidth={470}
             margin="10px auto 10px 10px"
             gap={"1rem"}
+            pl={"1rem"}
           >
             <FlexLeftRow key={index + "description"} ml={"1rem"}>
               <Button
+                onClick={() => setIsDrawerOpen(true)}
                 variant="contained"
                 sx={{
                   backgroundColor: "#130A44",

@@ -25,9 +25,16 @@ const HomeBackGround = () => {
   const isDesktop = useMediaQuery("(min-width:600px)");
   return (
     <>
-      <FlexCenteredColumn height={"100vh"} width={"100%"} zIndex={1}>
+      <FlexCenteredColumn
+        height={"100vh"}
+        width={"100%"}
+        zIndex={1}
+        sx={{
+          justifyContent: "space-around",
+        }}
+      >
         <FlexCenteredColumn
-          height={isDesktop ? "50%" : "UNSET"}
+          height={isDesktop ? "50%" : "40%"}
           sx={{
             justifyContent: isDesktop ? "center" : "center",
           }}
@@ -116,7 +123,12 @@ export const TextHeading = () => {
   const [trigger, setTrigger] = useState(false);
   const text = "YANTRAKSH";
   const currentText = useAnimatedText(text, trigger);
-
+  useEffect(() => {
+    setTimeout(() => {
+      setTrigger(true);
+      console.log("dddd");
+    }, 1);
+  }, []);
   const handleMouseEnter = () => {
     setTrigger(true);
   };
