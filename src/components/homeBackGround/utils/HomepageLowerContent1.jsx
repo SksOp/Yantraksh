@@ -117,30 +117,32 @@ const HomePageCardRenderer = ({ activecard, index, item }) => {
           unmountOnExit
           {...(isActive ? { timeout: 500 } : {})}
         >
-          <FlexCenteredColumn
-            sx={{
-              backgroundImage: `url(${card})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "100% 100%",
-              width: "200px",
-              height: "195px",
-              justifyContent: "flex-end",
-              position: "relative",
-            }}
-          >
-            <FlexCenteredColumn width={"200px"} position={"absolute"}>
-              <img src={item.img} width="150%" alt={item.title} />
+          <a href="/events">
+            <FlexCenteredColumn
+              sx={{
+                backgroundImage: `url(${card})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "100% 100%",
+                width: "200px",
+                height: "195px",
+                justifyContent: "flex-end",
+                position: "relative",
+              }}
+            >
+              <FlexCenteredColumn width={"200px"} position={"absolute"}>
+                <img src={item.img} width="150%" alt={item.title} />
+              </FlexCenteredColumn>
+              <Box p="1rem" textAlign={"center"}>
+                <Typography
+                  variant="h1"
+                  fontSize={"1.5rem"}
+                  sx={{ color: "white" }}
+                >
+                  {item.title}
+                </Typography>
+              </Box>
             </FlexCenteredColumn>
-            <Box p="1rem" textAlign={"center"}>
-              <Typography
-                variant="h1"
-                fontSize={"1.5rem"}
-                sx={{ color: "white" }}
-              >
-                {item.title}
-              </Typography>
-            </Box>
-          </FlexCenteredColumn>
+          </a>
         </Fade>
       )}
     </>
